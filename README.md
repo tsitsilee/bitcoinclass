@@ -15,6 +15,6 @@ Delete the dummy files and Create a new file called SmartLeaseContract in your R
 Copy the code in smartlease.sol file and past in the newly created smart contract
 add the chrome metamask and create an account on the ropsten test network
 
-In you Remix Editor activate Solidity Compiler choose the compiler version 0.4.0 then Compile the Smart Contract
+In you Remix Editor activate Solidity Compiler choose the compiler version 0.5.16 then Compile the Smart Contract
 
 If successful Finally Deploy the contract using your public address from metamask and Run the Smart Contract.
