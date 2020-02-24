@@ -1,6 +1,4 @@
 pragma solidity ^0.5.11;
-/* acknowledgement of idea of code/
-/*https://medium.com/@naqvi.jafar91/converting-a-property-rental-paper-contract-into-a-smart-contract-daa054fdf8a7*/
 /*co-authors lynet Svotwa and Samukeliso Mabarani*/
 //we first need to declare the contract
 contract RentalLeaseAgreement {
@@ -15,8 +13,8 @@ contract RentalLeaseAgreement {
     uint public createdTimestamp;
     uint public rent;
     string public house;
-    address public landlord;
-    address public tenant;
+    address payable public landlord;
+    address payable public tenant;
     enum State {Created, Started, Terminated}
     State public state;
 
@@ -51,7 +49,7 @@ contract RentalLeaseAgreement {
         return house;
     }
 
-    function getLandlord() public pure returns (address) {
+    function getLandlord() public pure returns (address payable[] memory _addresses) {
         return landlord;
     }
 
@@ -67,7 +65,7 @@ contract RentalLeaseAgreement {
         return createdTimestamp;
     }
 
-    function getContractAddress() public pure returns (address) {
+    function getContractAddress() public pure returns (address payable) {
         return this;
     }
 
@@ -100,16 +98,16 @@ contract RentalLeaseAgreement {
        emit  paidRent();
         landlord.transfer(msg.value);
         paidrents.push(PaidRent({
-        id : paidrents.length + 1,
+        rentid : paidrents.length + 1,
         value : msg.value
         }));
     }
  
-    function terminateContract()
+    function terminateContract() public
     onlyLandlord
     {
-        contractTerminated();
-        landlord.send(this.balance);
+       emit contractTerminated();
+       emit landlord.send(address(this).balance);
         state = State.Terminated;
     }
 }
