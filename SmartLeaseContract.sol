@@ -1,13 +1,14 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.5.16;
 /* acknowledgement of idea of code/
 /*https://medium.com/@naqvi.jafar91/converting-a-property-rental-paper-contract-into-a-smart-contract-daa054fdf8a7*/
 /*co-authors lynet Svotwa and Samukeliso Mabarani*/
 //we first need to create a contract
 contract RentalLeaseAgreement {
+
     /* Declaration a new struct type which will hold the paid rents*/
     struct PaidRent {
     uint id; /* The paid rent id*/
-    uint price; /* The amount of rent that is paid*/
+    uint price; /* The amount of rent that is to be paid*/
     }
 
     PaidRent[] public paidrents;
@@ -50,7 +51,7 @@ contract RentalLeaseAgreement {
         return paidrents;
     }
 
-    function getHouse() constant returns (string) {
+    function getHouse() constant returns (pure string) {
         return house;
     }
 
