@@ -1,10 +1,13 @@
 pragma solidity ^0.4.0;
+/* acknowledgement of idea of code/
+/*https://medium.com/@naqvi.jafar91/converting-a-property-rental-paper-contract-into-a-smart-contract-daa054fdf8a7*/
 /*co-authors lynet Svotwa and Samukeliso Mabarani*/
-contract RentalAgreement {
+//we first need to create a contract
+contract RentalLeaseAgreement {
     /* Declaration a new struct type which will hold the paid rents*/
     struct PaidRent {
     uint id; /* The paid rent id*/
-    uint value; /* The amount of rent that is paid*/
+    uint price; /* The amount of rent that is paid*/
     }
 
     PaidRent[] public paidrents;
