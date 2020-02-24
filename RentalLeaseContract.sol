@@ -1,4 +1,4 @@
-pragma solidity ^0.5.16;
+pragma solidity ^0.5.11;
 /* acknowledgement of idea of code/
 /*https://medium.com/@naqvi.jafar91/converting-a-property-rental-paper-contract-into-a-smart-contract-daa054fdf8a7*/
 /*co-authors lynet Svotwa and Samukeliso Mabarani*/
@@ -98,7 +98,7 @@ contract RentalLeaseAgreement {
     require(msg.value == rent)
     {
        emit  paidRent();
-        landlord.send(msg.value);
+        landlord.transfer(msg.value);
         paidrents.push(PaidRent({
         id : paidrents.length + 1,
         value : msg.value
