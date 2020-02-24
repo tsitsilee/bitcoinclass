@@ -13,8 +13,8 @@ contract RentalLeaseAgreement {
     uint public createdTimestamp;
     uint public rent;
     string public house;
-    address payable public landlord;
-    address payable public tenant;
+    address public landlord;
+    address public tenant;
     enum State {Created, Started, Terminated}
     State public state;
 
@@ -49,7 +49,7 @@ contract RentalLeaseAgreement {
         return house;
     }
 
-    function getLandlord() public pure returns (address payable[] memory _addresses) {
+    function getLandlord() public pure returns (address _addresses) {
         return landlord;
     }
 
@@ -65,8 +65,8 @@ contract RentalLeaseAgreement {
         return createdTimestamp;
     }
 
-    function getContractAddress() public pure returns (address payable) {
-        return this;
+    function getContractAddress() public pure returns (address) {
+        return address(this);
     }
 
     function getState() public pure returns (State) {
@@ -90,24 +90,24 @@ contract RentalLeaseAgreement {
         state = State.Started;
     }
 
-    function payRent() public 
+    function payRent() public payable
     onlyTenant
     inState(State.Started)
     require(msg.value == rent)
     {
        emit  paidRent();
-        landlord.transfer(msg.value);
+        landlord.transfer(address(msg.value));
         paidrents.push(PaidRent({
         rentid : paidrents.length + 1,
         value : msg.value
         }));
     }
- 
+
     function terminateContract() public
     onlyLandlord
     {
        emit contractTerminated();
-       emit landlord.send(address(this).balance);
+       emit landlord.transfer(address(this).balance);
         state = State.Terminated;
     }
 }
