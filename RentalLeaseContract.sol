@@ -96,7 +96,7 @@ contract RentalLeaseAgreement {
     require(msg.value == rent)
     {
        emit  paidRent();
-        landlord.transfer(address(msg.value));
+        address(uint160(landlord)).transfer(msg.value);
         paidrents.push(PaidRent({
         rentid : paidrents.length + 1,
         value : msg.value
