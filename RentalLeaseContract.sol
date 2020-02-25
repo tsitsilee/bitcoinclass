@@ -45,7 +45,7 @@ contract RentalLeaseAgreement {
     function getPaidRents() internal returns (PaidRent[] storage) {
         return paidrents;
     }
-
+//instead of public pure this version supports pulic view
     function getHouse() public view returns ( string memory) {
         return house;
     }
@@ -90,7 +90,7 @@ contract RentalLeaseAgreement {
         tenant = msg.sender;
         state = State.Started;
     }
-
+   //made the address payable 
     function payRent() public payable
     onlyTenant
     inState(State.Started)
