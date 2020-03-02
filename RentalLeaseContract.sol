@@ -12,6 +12,11 @@ pragma solidity ^0.5.11;
     set conditions as modifiers before executions
     emit events
 */
+/* acknowledgements for code reuse and developmental ideas
+https://ethereum.stackexchange.com/questions/65475/how-can-the-smart-contract-auto-update-contract-status-for-every-1st-of-each-mon/65481
+https://medium.com/@naqvi.jafar91/converting-a-property-rental-paper-contract-into-a-smart-contract-daa054fdf8a7
+https://github.com/anudishjain/CharterContracts
+*/
 contract RentalLease {
 
     /* Declaration the PaidRent as a struct type which will hold the paid rents*/
